@@ -17,37 +17,41 @@ public class ProductService {
         products.add(new Product(3, "Xiaomi 14", 1200));
     }
 
+    // GET - Lấy tất cả sản phẩm
     public List<Product> getAllProducts() {
         return products;
     }
 
-    //    Them san pham
+    // POST - Thêm sản phẩm
     public Product addProduct(Product product) {
         products.add(product);
         return product;
     }
 
-    //    Cap nhat san pham
+    // PUT - Cập nhật sản phẩm
     public Product updateProduct(int id, Product product) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == id) {
-                products.set(i, product);
-                return product;
+        for (Product p : products) {
+            if (p.getId() == id) {
+                p.setName(product.getName());
+                p.setPrice(product.getPrice());
+                return p;
             }
         }
+
         return null;
     }
 
-    //    Xoa
+    // DELETE - Xóa sản phẩm
     public Product deleteProduct(int id) {
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
+
             if (product.getId() == id) {
                 products.remove(i);
                 return product;
             }
         }
+
         return null;
     }
-
 }
